@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <div class="contaier">
+        <div class="music-thumb">
+            <h1 class="music-title">I lay my love on you</h1>
+           <img  class="music-image" src="image/onerepublic.jfif" alt="">
+        </div>
+        <div class="music-time">
+            <span class="music-start"></span>
+            <input type="range" class="range" min="0" max="100" step="1" value="0">
+            <span class="music-end"></span>
+            <audio class="audio" src=""></audio>
+        </div>
+        <div class="music-volum">
+            <i class="uil uil-volume"></i>
+            <input type="range" min="0" max="100" step="1" value="0">
+        </div>
+        <div class="music-control ">
+            <span class="circle"></span>
+            <div class="btn-random">
+                <i class="uil uil-arrow-random"></i>
+            </div>
+            <div class="btn-pre">
+                <i class="uil uil-step-backward"></i>
+            </div>
+            <div class="btn-toggle">   
+                <i class="uil uil-play"></i>
+                <i class="uil uil-pause"></i>
+            </div>
+            <div class="btn-next">   
+                <i class="uil uil-skip-forward"></i>
+            </div>
+            <div class="btn-repeat">
+                <i class="uil uil-repeat"></i>
+            </div>
+        </div>
+    </div>
+   <script src="./index.js"></script>
+  
+</body>
+</html>

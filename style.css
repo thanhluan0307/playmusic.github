@@ -1,0 +1,129 @@
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contaier {
+    padding: 20px;
+    width: 400px;
+    height: 600px;
+    background-color: rgba(172, 36, 142, 0.5);
+    border-radius: 10px ;
+    display: flex;
+    flex-direction: column;
+}
+.music-thumb {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.music-title {
+    margin: 14px 0 20px 0;
+}
+.music-image {
+    display: block;
+    width: 250px;
+    height: 250px;
+    border-radius:50%;
+    
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+.music-time {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0 30px 0;
+    
+}
+
+.music-time input {
+    width: 80%;
+}
+input {
+    -webkit-appearance: none;
+    height: 3px;
+    border-radius:5px ;
+    border: none;
+    outline: none;
+    background: rgb(66, 33, 159);
+}
+
+input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius:50% ;
+    cursor: pointer;
+    border: 3px solid #d70eac;
+    background: #ffffff;
+    
+}
+.music-volum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.music-volum .uil {
+    margin-right: 10px;
+    font-size: 20px;
+}
+.music-control {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+}
+.music-control .uil{
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px; 
+    line-height: 100%; 
+    cursor: pointer;
+    
+}
+.music-control .uil:hover {
+    opacity: 0.6;
+    color: rgb(79, 16, 214);
+}
+.circle {
+    z-index: -1;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 4px solid #d70eac;
+}
+.btn-toggle i:nth-child(2) {
+    display: none;
+}
+.btn-toggle.playing i:nth-child(2) {
+    display: block;
+}
+.btn-toggle.playing i:nth-child(1) {
+    display: none;
+}
+.btn-random.active{
+    color: rgb(79, 16, 214)
+}
+.btn-repeat.active{
+    color: rgb(79, 16, 214)
+}
