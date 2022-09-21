@@ -50,7 +50,7 @@ body {
 }
 
 .music-time input {
-    width: 80%;
+    width: 70%;
 }
 input {
     -webkit-appearance: none;
@@ -94,12 +94,9 @@ input::-webkit-slider-thumb {
     font-size: 30px; 
     line-height: 100%; 
     cursor: pointer;
-    
+    transition: all 0.5s;
 }
-.music-control .uil:hover {
-    opacity: 0.6;
-    color: rgb(79, 16, 214);
-}
+
 .circle {
     z-index: -1;
     position: absolute;
@@ -122,8 +119,8 @@ input::-webkit-slider-thumb {
     display: none;
 }
 .btn-random.active{
-    color: rgb(79, 16, 214)
+    color: rgb(255, 255, 255)
 }
 .btn-repeat.active{
-    color: rgb(79, 16, 214)
+    color: rgb(255, 255, 255)
 }

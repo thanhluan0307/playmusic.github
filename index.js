@@ -42,37 +42,66 @@ var songs = [
         path : 'songs/y2mate.com_Leave_Out_All_The_Rest.mp3'
     }
 ]
-var $ =document.querySelector.bind((document))
+var $ = document.querySelector.bind((document))
 var isplaying = false
-var isramdom = false
+var isRamdom = false
+var isrepeat = false
 var current = 0
+var minutes = 0
+
+var start = $('.music-start')
+var end = $('.music-end')
+console.log(start,end)
 var audio = $('.audio')
+var nameSong = $('.music-title')
+var thumb = $('.music-image')
+var inputPrecent = $('.range')
+var timeStart = $('.music-start')
+var timeduration = $('.music-end')
+var inputVolume = $('.volume')
+//Btn
 var playBtn = $('.btn-toggle')
 var nextBtn = $('.btn-next')
 var preBtn = $('.btn-pre')
 var randomBtn = $('.btn-random')
-var nameSong = $('.music-title')
 var repeatBtn = $('.btn-repeat')
-var thumb = $('.music-image')
-var input = $('.range')
-var timeStart = $('.music-start')
-var timeduration = $('.music-end')
-audio.ontimeupdate = function() {
-  input.value = audio.currentTime /audio.duration * 100
-  
-}
-input.oninput = function () {
-  
-}
+
+// Xử lý quay đĩa nhạc
+var cdthumb = thumb.animate([
+  {transform: 'rotate(360deg)'}
+],{
+  duration:10000,
+  iterations:Infinity
+})
+cdthumb.pause()
+//lấy bài hát hiện tại
 function getCurrentSong () {
   audio.src = songs[current].path
 }
 getCurrentSong()
+//Thay đổi âm lượng
+inputVolume.oninput = function () {
+  audio.volume = inputVolume.value
+}
+//tiến độ bài hát
+audio.ontimeupdate = function() {
+  if(audio.duration) {
+    var percent = Math.floor(audio.currentTime / audio.duration * 100)
+    inputPrecent.value = percent
+  }
+  start.innerHTML = Math.floor(audio.currentTime)
+}
+//Tua bài hát
+inputPrecent.oninput = function () {
+  var seek = audio.duration / 100 * inputPrecent.value
+  audio.currentTime = seek
+}
+// rendẻ veiw
 function render () {
   nameSong.innerHTML = songs[current].name
   thumb.src = songs[current].image
-  convent(audio.duration)
 }
+//play end pause
 function playpause () {
   if(isplaying) {
     isplaying = false
@@ -86,42 +115,77 @@ function playpause () {
     cdthumb.play()
   }
 }
-
-  var cdthumb = thumb.animate([
-    {transform: 'rotate(360deg)'}
-  ],{
-    duration:10000,
-    iterations:Infinity
-  })
-  cdthumb.pause()
-
-
+// Xử lý next bài
 function nextSong () {
-  current++
-  if (current >= songs.length) {
-    current = 0
+  if (isRamdom) {
+    current = Math.floor(Math.random() * songs.length)
+    getCurrentSong()
+    render()
+    isplaying = false
+    playpause()
+  }else {
+    current++
+    if (current >= songs.length) {
+      current = 0
+    }
+    getCurrentSong()
+    render()
+    isplaying = false
+    playpause()
   }
-  getCurrentSong()
-  render()
-  isplaying = false
-  playpause()
 }
+//Xử lý back bài
 function preSong () {
-  current--
-  if (current < 0) {
-     current = songs.length - 1
+  if (isRamdom) {
+    current = Math.floor(Math.random() * songs.length)
+    getCurrentSong()
+    render()
+    isplaying = false
+    playpause()
+  }else {
+    current--
+    if (current < 0) {
+       current = songs.length - 1
+    }
+    getCurrentSong()
+    render()
+    isplaying = false
+    playpause()
   }
-  getCurrentSong()
-  render()
-  isplaying = false
-  playpause()
 }
-
-
+// Xử lý khi hết bài
+audio.onended = function () {
+  if (isrepeat) {
+    getCurrentSong()
+    audio.play()
+  }else {
+    nextSong()
+  }
+}
+// active Random 
+function randomSong () {
+  if (isRamdom) {
+    isRamdom = false
+    randomBtn.classList.remove('active')
+  }else {
+    isRamdom =true
+    randomBtn.classList.add('active')
+  }
+}
+// active repeat
+function repeatSong () {
+  if (isrepeat) {
+    isrepeat = false
+    repeatBtn.classList.remove('active')
+  }else {
+    isrepeat =true
+    repeatBtn.classList.add('active')
+  }
+}
+repeatBtn.addEventListener('click',repeatSong)
+randomBtn.addEventListener('click',randomSong)
 playBtn.addEventListener('click',playpause)
 nextBtn.addEventListener('click',nextSong)
 preBtn.addEventListener('click',preSong)
-// randomBtn.addEventListener('click',randomSong)
-// repeatBtn.addEventListener('click',repeatSong)
 
 
