@@ -43,15 +43,14 @@ var songs = [
     }
 ]
 var $ = document.querySelector.bind((document))
+
 var isplaying = false
 var isRamdom = false
 var isrepeat = false
 var current = 0
-var minutes = 0
 
 var start = $('.music-start')
 var end = $('.music-end')
-console.log(start,end)
 var audio = $('.audio')
 var nameSong = $('.music-title')
 var thumb = $('.music-image')
@@ -59,13 +58,29 @@ var inputPrecent = $('.range')
 var timeStart = $('.music-start')
 var timeduration = $('.music-end')
 var inputVolume = $('.volume')
+var iconMute = $('.music-volum .uil')
+
 //Btn
 var playBtn = $('.btn-toggle')
 var nextBtn = $('.btn-next')
 var preBtn = $('.btn-pre')
 var randomBtn = $('.btn-random')
 var repeatBtn = $('.btn-repeat')
-
+var unMuteBtn = $('.unmute')
+var timeid = setInterval(displayTimer,1000)
+//Xu ly volume bat/tat
+function toggleVolume () {
+  var isUnmuted = iconMute.classList.contains('uil-volume')
+  if(isUnmuted) {
+    audio.volume = 0
+    inputVolume.value = 0
+    iconMute.classList.replace('uil-volume', 'uil-volume-mute')
+  }else {
+    audio.volume = 0.5
+    inputVolume.value = 0.5
+    iconMute.classList.replace('uil-volume-mute', 'uil-volume')
+  }
+}
 // Xử lý quay đĩa nhạc
 var cdthumb = thumb.animate([
   {transform: 'rotate(360deg)'}
@@ -88,15 +103,16 @@ audio.ontimeupdate = function() {
   if(audio.duration) {
     var percent = Math.floor(audio.currentTime / audio.duration * 100)
     inputPrecent.value = percent
+    timeCurrent = percent
   }
-  start.innerHTML = Math.floor(audio.currentTime)
 }
 //Tua bài hát
 inputPrecent.oninput = function () {
   var seek = audio.duration / 100 * inputPrecent.value
   audio.currentTime = seek
+  displayTimer()
 }
-// rendẻ veiw
+// render veiw
 function render () {
   nameSong.innerHTML = songs[current].name
   thumb.src = songs[current].image
@@ -108,11 +124,13 @@ function playpause () {
     playBtn.classList.remove('playing')
     audio.pause()
     cdthumb.pause()
+    clearInterval(timeid)
   }else {
     isplaying = true
     playBtn.classList.add('playing')
     audio.play()
     cdthumb.play()
+    setInterval(displayTimer,1000)
   }
 }
 // Xử lý next bài
@@ -155,6 +173,7 @@ function preSong () {
 }
 // Xử lý khi hết bài
 audio.onended = function () {
+
   if (isrepeat) {
     getCurrentSong()
     audio.play()
@@ -182,10 +201,29 @@ function repeatSong () {
     repeatBtn.classList.add('active')
   }
 }
+function displayTimer () {
+  var { duration, currentTime} = audio
+  start.textContent = formartTime(currentTime)
+  if (duration) {
+      end.textContent = formartTime(duration)
+  }else {
+    end.textContent = '00:00'
+  }
+}
+displayTimer()
+function formartTime (number) {
+  var minutes = Math.floor(number / 60)
+  var seconds = Math.floor(number - minutes * 60)
+  return `0${minutes}:${seconds > 9 ? seconds: '0'+seconds}`
+}
 repeatBtn.addEventListener('click',repeatSong)
 randomBtn.addEventListener('click',randomSong)
 playBtn.addEventListener('click',playpause)
 nextBtn.addEventListener('click',nextSong)
 preBtn.addEventListener('click',preSong)
+unMuteBtn.addEventListener('click',toggleVolume)
+
+
+
 
 
