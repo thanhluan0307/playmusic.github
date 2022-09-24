@@ -3,6 +3,9 @@
      margin: 0;
      box-sizing: border-box;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     height: 100vh;
     display: flex;
@@ -17,6 +20,7 @@ body {
     border-radius: 10px ;
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 .music-thumb {
     display: flex;
@@ -126,4 +130,19 @@ input::-webkit-slider-thumb {
 }
 .music-volum {
     cursor: pointer;
+}
+.in {
+    overflow: auto;
+    transition: all 0.1s;
+    scroll-behavior: smooth;
+}
+p {
+    font-weight: bold;
+    color: rgb(225, 18, 18);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 4px;
+    text-align: center;
+    background-color: rgba(163, 73, 144,0.5);
+    font-size: 20px;
 }
