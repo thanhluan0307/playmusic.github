@@ -132,7 +132,7 @@ input::-webkit-slider-thumb {
     cursor: pointer;
 }
 .in {
-    overflow: auto;
+    overflow: hidden;
     transition: all 0.1s;
     scroll-behavior: smooth;
 }
@@ -145,4 +145,17 @@ p {
     text-align: center;
     background-color: rgba(163, 73, 144,0.5);
     font-size: 20px;
+}
+.active {
+    background: rgba(75, 211, 33, 0.6);
+    color: white;
+}
+.lyrics {
+    transition: all 1s;
+  transform: translateY();
+}
+@media screen and (max-width: 720px) {
+    .in {
+        display: none;
+    }
 }
