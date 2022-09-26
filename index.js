@@ -1,52 +1,66 @@
 var songs = [
     {
-        name : 'OneRepublic',
-        image : 'image/wild life.jpg',
+        name : 'Bà Năm',
+        image : 'image/Phi_nhung.jpg',
         singer: "Raftaar x Fortnite",
-        path : 'songs/Wild_Life_OneRepublic.mp3',
+        path : 'songs/ba_nam.mp3',
         
       },
       {
-        name : 'OneRepublic',
-        image : 'image/onerepublic.jfif',
+        name : 'Gọi đò',
+        image : 'image/ngoc_thai.jpg',
         singer: "Raftaar x Fortnite",
-        path : 'songs/y2mate.com_Vietsub_Lyrics_Someday_OneRepublic.mp3',
+        path : 'songs/goi_do_duong_ngoc_thai_7859612965389526044.mp3',
        
     },
     {
-        name : 'Maroon 5',
-        image : 'image/suger.jfif',
+        name : 'Gửi về quan họ',
+        image : 'image/hong_loan.jpg',
         singer: "Raftaar x Fortnite",
-        path : 'songs/y2mate.com_Maroon_5_Sugar_Lyrics_Maroon_5_Animals_Lyrics_mix.mp3',
+        path : 'songs/gui_ve_quan_ho_duy_phuong_a_dam_giong_ca_qua_dinh_-652226894167376623.mp3',
      
     },
     {
-        name : 'Imagine Dragons',
-        image : 'image/Birds.jfif',
+        name : 'Mưa chiều miền trung',
+        image : 'image/hong_loan1.jpg',
         singer: "Raftaar x Fortnite",
-        path : 'songs/y2mate.com_Imagine_Dragons_Birds_Audio_ft_Elisa.mp3',
+        path : 'songs/mua_chieu_mien_trung_duong_hong_loan_official_mv_hgeOB3MByoK-gucZSHIB.mp3',
        
     },
     {
-        name : 'ZAYN - Feat. Sia',
-        image : 'image/Dusk_till_dwan.jfif',
+        name : 'Hạ Thương',
+        image : 'image/ngoc_son.jpg',
         singer: "Raftaar x Fortnite",
-        path : 'songs/y2mate.com_ZAYN_Dusk_Till_Dawn_Lyrics_Feat_Sia.mp3',
+        path : 'songs/ngoc_son_ha_thuong_1984828350399727955.mp3',
     
     }, 
     {
-        name : 'Linkin Park',
+        name : 'Quảng bình quê ta',
         image : 'image/Linkin_park.jfif',
         singer: "Raftaar x Fortnite",
-        path : 'songs/y2mate.com_BURN_IT_DOWN_Official_Music_Video_Linkin_Park.mp3',
+        path : 'songs/quang_binh_que_ta_hd_3412967577559774427.mp3',
       
     }, 
     {
-        name : 'Linkin Park',
-        image : 'image/Linkin_park2.jfif',
+        name : 'Tìn em biển rộng sóng dài',
+        image : 'image/quan_binh_que_ta.jpg',
         singer: "Raftaar x Fortnite",
-        path : 'songs/y2mate.com_Leave_Out_All_The_Rest.mp3',
+        path : 'songs/tinh_em_bien_rong_song_dai_rot_mat_tu_cau_dau_tien_-1668725769454382275.mp3',
       
+    },
+    {
+        name : 'Đỗ Thanh Long ',
+        image : 'image/ong_long.jpg',
+        singer: "Raftaar x Fortnite",
+        path : 'songs/vam_co_dong_quoc_dai_1833034.mp3',
+    
+    },
+    {
+        name : 'Nguyễn Thị Tám',
+        image : 'image/ba_tam.jpg',
+        singer: "Raftaar x Fortnite",
+        path : 'songs/xin_em_dung_khoc_vu_quy_-1520363635554719921.mp3',
+    
     }
 ]
 var textMaroon5 = [
@@ -452,49 +466,49 @@ window.onkeydown = function (e) {
     case 82 :
       randomSong()
       break
-    case 49 :
+    case 49 :  //1
       current = 0
       getCurrentSong()
       render()
       keyPlay()
       karaoke(textWildLife)
       break
-    case 50 :
+    case 50 : //2
       current = 1
       getCurrentSong()
       render()
       keyPlay()
       karaoke(textSomeday)
       break
-    case 51 :
+    case 51 : //3
       current = 2
       getCurrentSong()
       render()
       keyPlay()
       karaoke(textMaroon5)
       break
-    case 52 :
+    case 52 : //4
       current = 3
       getCurrentSong()
       render()
       keyPlay()
       karaoke(textBirds)
       break
-    case 53 :
+    case 53 : //5
       current = 4
       getCurrentSong()
       render()
       keyPlay()
       karaoke(textDuskTillDawn)
       break
-    case 54 :
+    case 54 : //6
       current = 5
       getCurrentSong()
       render()
       keyPlay()
       karaoke(textBurnItDown)  
       break
-    case 55 :
+    case 55 : //7
       current = 6
       getCurrentSong()
       render()
@@ -539,10 +553,14 @@ preBtn.addEventListener('click',preSong)
           if( audio.currentTime >= element.start)
             {lyrics.children[index].classList.add('active')}
           if (lyrics.children[13].classList.contains('active')) {
-            lyrics.style.transform = `translateY(-580px)`     
+            setTimeout(function(){
+              lyrics.style.transform = `translateY(-580px)`
+            },1000)     
           }
           if (lyrics.children[27].classList.contains('active')) {
-            lyrics.style.transform = `translateY(-1160px)`
+            setTimeout(function(){
+              lyrics.style.transform = `translateY(-1160px)`
+            },1000) 
           }               
       });
   });
